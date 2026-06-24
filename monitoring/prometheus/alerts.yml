@@ -1,0 +1,46 @@
+groups:
+
+
+- name: backend-alerts
+
+
+  rules:
+
+
+  - alert: BackendDown
+
+
+    expr: up{job="backend"} == 0
+
+
+    for: 1m
+
+
+    labels:
+
+      severity: critical
+
+
+    annotations:
+
+
+      summary:
+
+      "Backend service is down"
+
+
+
+  - alert: HighMemoryUsage
+
+
+    expr:
+
+      process_resident_memory_bytes > 500000000
+
+
+    for: 2m
+
+
+    labels:
+
+      severity: warning
