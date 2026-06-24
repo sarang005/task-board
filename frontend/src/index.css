@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Layout */
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #111827;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h3 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background: #1f2937;
+  color: white;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  height: 60px;
+  background: #1e293b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Board */
+.board {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.column {
+  flex: 1;
+  min-width: 280px;
+  background: #111827;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.column h3 {
+  margin-bottom: 12px;
+  color: #cbd5e1;
+}
+
+/* Card */
+.card {
+  background: #1f2937;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 6px 0;
+}
+
+/* Badge */
+.badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+.badge.todo {
+  background: #f59e0b;
+}
+
+.badge.inprogress {
+  background: #3b82f6;
+}
+
+.badge.done {
+  background: #22c55e;
+}
