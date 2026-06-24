@@ -25,5 +25,46 @@ services:
     volumes:
       - mongo_data:/data/db
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus/alerts.yml:/etc/prometheus/alerts.yml
+
+    depends_on:
+      - backend
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+      - loki
+
+  loki:
+    image: grafana/loki
+    container_name: loki
+
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./monitoring/loki/loki-config.yml:/etc/loki/local-config.yaml
+
+  promtail:
+    image: grafana/promtail
+    container_name: promtail
+
+    volumes:
+      - ./monitoring/promtail/promtail-config.yml:/etc/promtail/config.yml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+
+    depends_on:
+      - loki
+
 volumes:
   mongo_data:
