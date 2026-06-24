@@ -9,17 +9,41 @@ export default function TaskBoard() {
     api.get("/tasks").then((res) => setTasks(res.data));
   }, []);
 
+  const columns = [
+    {
+      id: "todo",
+      title: "To Do",
+      color: "blue",
+    },
+    {
+      id: "inprogress",
+      title: "In Progress",
+      color: "orange",
+    },
+    {
+      id: "done",
+      title: "Done",
+      color: "green",
+    },
+  ];
+
   return (
     <div className="board">
-      {["todo", "inprogress", "done"].map((status) => (
-        <div className="column" key={status}>
-          <h3>{status.toUpperCase()}</h3>
+      {columns.map((column) => (
+        <div className="column" key={column.id}>
+          <div className="column-header">
+            <h3>{column.title}</h3>
 
-          {tasks
-            .filter((t) => t.status === status)
-            .map((task) => (
-              <TaskCard key={task._id} task={task} />
-            ))}
+            <span>{tasks.filter((t) => t.status === column.id).length}</span>
+          </div>
+
+          <div className="tasks">
+            {tasks
+              .filter((t) => t.status === column.id)
+              .map((task) => (
+                <TaskCard key={task._id} task={task} />
+              ))}
+          </div>
         </div>
       ))}
     </div>
